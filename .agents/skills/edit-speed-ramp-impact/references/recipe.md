@@ -51,9 +51,29 @@ qa:
 - Rebuild audio timestamps after speed changes with `aresample=async=1:first_pts=0,asetpts=N/SR/TB`.
 - If `drawtext` is unavailable, use simple bars in FFmpeg or switch typography to Remotion, HyperFrames, or image overlays.
 
+## Reusable Renderer
+
+Use this command for arbitrary raw car clips:
+
+```bash
+scripts/render-speed-ramp-impact.py input-car-video.mp4 output-car-edit.mp4
+```
+
+The script:
+
+- probes the input duration and audio presence;
+- builds a seven-part fast-slow-fast EDL from proportional source windows;
+- samples nearby candidate frames for brightness so it avoids black/source-transition moments;
+- keeps source ranges mostly chronological;
+- renders vertical 720x1280 H.264/AAC with impact flashes, punch-in crops, grade, sharpening, and loudness normalization.
+
+Use `--target-duration 15` to ask for a longer reel. Use `--print-plan` when debugging the generated EDL.
+
 ## Local Fixture
 
-The first validated fixture is `/Users/bedir/Downloads/download.mp4`, rendered by `scripts/render-car-edit.sh` into `/Users/bedir/Documents/Codex/2026-07-23/can/outputs/car-edit.mp4`.
+The first validated reusable fixture is `/Users/bedir/Downloads/download.mp4`, rendered by `scripts/render-speed-ramp-impact.py` into `/Users/bedir/Documents/Codex/2026-07-23/can/outputs/car-edit-reusable.mp4`.
+
+The hand-tuned fixture remains `scripts/render-car-edit.sh`, which renders `/Users/bedir/Documents/Codex/2026-07-23/can/outputs/car-edit.mp4`.
 
 Observed source issue: the raw car footage contains a built-in vertical strip transition around 13.2s. Trim around it unless the user explicitly wants that glitch-like moment.
 

@@ -16,7 +16,7 @@ Use this skill to make a short, kinetic promo cut where time-remapping is the ma
    Write the selected clips as `source_in`, `source_out`, `speed`, and `role`. Use 5-9 clips for a 10-18 second reel. Alternate holds and accelerations: hero hold, whip burst, detail hold, profile move, final hero.
 
 3. Execute with the simplest adapter that can finish cleanly.
-   Prefer FFmpeg for trim, speed, crop, grade, flash bars, loudness, and final encode. Use the repo script `scripts/render-car-edit.sh` when the request is a rainy gas-station car promo or a close variant. Use Remotion or HyperFrames only when the edit needs typography, UI, or animated graphic layers that the local FFmpeg build cannot burn in.
+   Prefer FFmpeg for trim, speed, crop, grade, flash bars, loudness, and final encode. Use `scripts/render-speed-ramp-impact.py <input> <output>` as the reusable default for raw car clips. Use `scripts/render-car-edit.sh` only as the hand-tuned fixture for the original rainy gas-station sample. Use Remotion or HyperFrames when the edit needs typography, UI, or animated graphic layers that the local FFmpeg build cannot burn in.
 
 4. Add impact language.
    Use fast segments as transitions. Pair major changes with 2-4 frame white flashes, subtle punch-in crops, sharpened highlights, and short audio fades. Keep grades bounded so shadows stay readable and highlights do not clip.
