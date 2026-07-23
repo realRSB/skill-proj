@@ -1,0 +1,4 @@
+interface:
+  display_name: "Game Menu UI Composite"
+  short_description: "Tracked video-game menu overlays"
+  default_prompt: "Use $edit-game-menu-ui-composite to turn this footage into a video-game menu scene."
