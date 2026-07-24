@@ -1,0 +1,4 @@
+interface:
+  display_name: "Slashing Diagonal Fade"
+  short_description: "Template slash/fade transition"
+  default_prompt: "Use $edit-slashing-diagonal-fade to add the car-template slash transition to this edit."
