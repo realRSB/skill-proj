@@ -38,7 +38,10 @@ def probe(path):
     data = json.loads(result.stdout)
     duration = float(data["format"]["duration"])
     has_audio = any(stream.get("codec_type") == "audio" for stream in data["streams"])
-    return duration, has_audio
+    video = next(stream for stream in data["streams"] if stream.get("codec_type") == "video")
+    width = int(video["width"])
+    height = int(video["height"])
+    return duration, has_audio, width, height
 
 
 def clamp(value, lo, hi):
@@ -137,7 +140,7 @@ def build_plan(input_path, duration, target_duration):
     return plan
 
 
-def filter_complex(plan, has_audio):
+def filter_complex(plan, has_audio, source_width, source_height):
     video_parts = []
     audio_parts = []
     concat_inputs = []
@@ -145,13 +148,16 @@ def filter_complex(plan, has_audio):
     flash_times = []
 
     for index, segment in enumerate(plan):
-        zoom_width = int(math.ceil(720 * segment["zoom"] / 2) * 2)
+        if source_width / source_height >= 720 / 1280:
+            scale_expr = f"scale=-2:{int(math.ceil(1280 * segment['zoom'] / 2) * 2)}"
+        else:
+            scale_expr = f"scale={int(math.ceil(720 * segment['zoom'] / 2) * 2)}:-2"
         shake = "+18*sin(t*18)" if "burst" in segment["role"] else ""
         video_parts.append(
             f"[0:v]trim=start={segment['start']:.3f}:end={segment['end']:.3f},"
             f"setpts=(PTS-STARTPTS)/{segment['speed']:.6f},"
-            f"scale={zoom_width}:-2,crop=720:1280:(iw-ow)/2{shake}:(ih-oh)/2,"
-            f"fps=30,setsar=1[v{index}]"
+            f"{scale_expr},crop=720:1280:(iw-ow)/2{shake}:(ih-oh)/2,"
+            f"fps=30,settb=AVTB,setsar=1[v{index}]"
         )
         concat_inputs.append(f"[v{index}]")
 
@@ -173,7 +179,7 @@ def filter_complex(plan, has_audio):
 
     flash_enable = "+".join(f"between(t,{t - 0.035:.3f},{t + 0.045:.3f})" for t in flash_times) or "0"
     final_video = (
-        "[cutv]eq=contrast=1.12:brightness=0.005:saturation=1.22:gamma=1.05,"
+        "[cutv]fps=30,settb=AVTB,eq=contrast=1.12:brightness=0.005:saturation=1.22:gamma=1.05,"
         "curves=preset=medium_contrast,"
         "unsharp=5:5:0.45:3:3:0.16,vignette=PI/7,"
         f"drawbox=x=0:y=0:w=iw:h=ih:color=white@0.34:t=fill:enable='{flash_enable}',"
@@ -208,13 +214,13 @@ def main():
     output_path = Path(args.output).expanduser()
     output_path.parent.mkdir(parents=True, exist_ok=True)
 
-    duration, has_audio = probe(input_path)
+    duration, has_audio, source_width, source_height = probe(input_path)
     if duration < 3:
         raise SystemExit("Input video must be at least 3 seconds long for a speed-ramp edit.")
 
     plan = build_plan(input_path, duration, args.target_duration)
     if args.print_plan:
-        print(json.dumps({"duration": duration, "has_audio": has_audio, "clips": plan}, indent=2))
+        print(json.dumps({"duration": duration, "has_audio": has_audio, "width": source_width, "height": source_height, "clips": plan}, indent=2))
 
     cmd = [
         "ffmpeg",
@@ -223,13 +229,13 @@ def main():
         "-i",
         str(input_path),
         "-filter_complex",
-        filter_complex(plan, has_audio),
+        filter_complex(plan, has_audio, source_width, source_height),
         "-map",
         "[finalv]",
     ]
     if has_audio:
         cmd.extend(["-map", "[finala]"])
-    cmd.extend(["-c:v", "libx264", "-preset", "medium", "-crf", "18"])
+    cmd.extend(["-r", "30", "-fps_mode", "cfr", "-c:v", "libx264", "-preset", "medium", "-crf", "18"])
     if has_audio:
         cmd.extend(["-c:a", "aac", "-b:a", "160k"])
     cmd.extend(["-movflags", "+faststart", str(output_path)])
