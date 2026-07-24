@@ -9,7 +9,7 @@ Use this skill for the fourth template effect from `car-edit.mp4`: the hard flas
 
 ## Process
 
-1. Place the cut at the requested timestamp or at `76.92%` of output duration when matching `car-edit.mp4`.
+1. Place the cut at the requested timestamp or at about `59.94%` of output duration when matching the `download.mp4` reference template.
 2. Add a very short white flash, exposure hit, or one-frame impact frame.
 3. Keep the cut shorter than the flicker and stronger than the whoosh.
 4. QA the before/after frames. Completion criterion: the cut reads as a decisive beat without becoming a blank pause.

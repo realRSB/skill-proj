@@ -9,7 +9,7 @@ Use this skill for the second template effect from `car-edit.mp4`: the blurred w
 
 ## Process
 
-1. Place the whoosh at the requested timestamp or at `38.46%` of output duration when matching `car-edit.mp4`.
+1. Place the whoosh at the requested timestamp or at about `36.74%` of output duration when matching the `download.mp4` reference template.
 2. Apply a short blur/smear window over the moving source.
 3. Add a subtle crop sweep or punch if the footage has enough margin.
 4. QA by checking that the whoosh bridges motion rather than hiding a bad crop. Completion criterion: the car remains readable immediately before and after the blur.

@@ -9,7 +9,7 @@ Use this skill for the first template effect from `car-edit.mp4`: the fast visua
 
 ## Process
 
-1. Place the flicker at the requested timestamp or at `23.08%` of the output duration when matching `car-edit.mp4`.
+1. Place the flicker at the requested timestamp or at about `12.98%` of the output duration when matching the `download.mp4` reference template.
 2. Build 3 alternating white pulses and 3 black/dim pulses across a short window.
 3. Keep the pulses brief enough to read as an impact, not a fade.
 4. QA by sampling frames before, during, and after the flicker. Completion criterion: the effect is visible in motion but does not obscure the car for more than a few frames.

@@ -2,9 +2,9 @@
 
 ## Template Position
 
-- Template source: `car-edit.mp4`
-- Template moment: about 10s
-- Scaled position: `10 / 13 = 76.92%`
+- Template source: `download.mp4`
+- Template moment: about 10.85s in the 18.1s reference
+- Scaled position: `10.85 / 18.1 = 59.94%`
 
 ## Timing
 

@@ -9,7 +9,7 @@ Use this skill for the third template effect from `car-edit.mp4`: the slashing d
 
 ## Process
 
-1. Place the slash at the requested timestamp or at `53.85%` of output duration when matching `car-edit.mp4`.
+1. Place the slash at the requested timestamp or at about `76.52%` of output duration when matching the `download.mp4` reference template.
 2. Split the source into overlapping pre/post windows around the slash.
 3. Apply a diagonal `xfade` or an equivalent diagonal mask transition.
 4. QA by sampling the slash midpoint. Completion criterion: the diagonal transition is visible and lands on adjacent moments from the same source order.
