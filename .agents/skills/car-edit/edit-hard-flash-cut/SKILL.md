@@ -10,8 +10,8 @@ Use this skill for the fourth template effect from `car-edit.mp4`: the hard flas
 ## Process
 
 1. Place the cut at the requested timestamp or at about `59.94%` of output duration when matching the `download.mp4` reference template.
-2. Add a very short white flash, exposure hit, or one-frame impact frame.
-3. Keep the cut shorter than the flicker and stronger than the whoosh.
-4. QA the before/after frames. Completion criterion: the cut reads as a decisive beat without becoming a blank pause.
+2. Add a short white-black-white impact pulse with a crop punch so the beat reads as a cut, not a blur.
+3. Keep the cut shorter than the flicker and visually stronger than the whoosh.
+4. QA the before/after frames. Completion criterion: at least one sampled frame in the cut window is clearly flashed or snapped, and the following frame lands on a different crop.
 
 Read `references/recipe.md` for timing and FFmpeg expressions.

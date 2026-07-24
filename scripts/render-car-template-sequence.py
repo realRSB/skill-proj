@@ -23,7 +23,7 @@ BEATS = [
     {"end": 0.355, "style": "hold", "zoom": 1.24, "x": 0.68, "y": 0.50},
     {"end": 0.385, "style": "whoosh", "zoom": 1.42, "x": 0.50, "y": 0.50},
     {"end": 0.590, "style": "hold", "zoom": 1.30, "x": 0.36, "y": 0.50},
-    {"end": 0.625, "style": "cut", "zoom": 1.44, "x": 0.56, "y": 0.50},
+    {"end": 0.625, "style": "cut", "zoom": 1.55, "x": 0.56, "y": 0.50},
     {"end": 0.725, "style": "hold", "zoom": 1.28, "x": 0.44, "y": 0.50},
     {"end": 0.785, "style": "slash", "zoom": 1.22, "x": 0.55, "y": 0.50},
     {"end": 0.910, "style": "hold", "zoom": 1.08, "x": 0.50, "y": 0.50},
@@ -158,18 +158,32 @@ def segment_filter(index, beat, start, end, info):
             ]
         )
     elif beat["style"] == "cut":
+        first_flash = min(0.07, duration * 0.22)
+        black_snap = min(0.13, duration * 0.42)
+        second_flash = min(0.21, duration * 0.68)
         filters.extend(
             [
-                "boxblur=lr=14:lp=1:cr=8:cp=1",
-                "tblend=all_mode=average",
-                f"drawbox=x=0:y=0:w=iw:h=ih:color=white@0.42:t=fill:enable='between(t,0,{min(0.12, duration * 0.35):.3f})'",
+                "eq=contrast=1.45:brightness=0.065:saturation=1.25",
+                f"drawbox=x=0:y=0:w=iw:h=ih:color=white@0.92:t=fill:enable='between(t,0,{first_flash:.3f})'",
+                f"drawbox=x=0:y=0:w=iw:h=ih:color=black@0.58:t=fill:enable='between(t,{first_flash:.3f},{black_snap:.3f})'",
+                f"drawbox=x=0:y=0:w=iw:h=ih:color=white@0.62:t=fill:enable='between(t,{black_snap:.3f},{second_flash:.3f})'",
             ]
         )
     elif beat["style"] == "slash":
+        travel = max(duration, 0.001)
         filters.extend(
             [
-                "rotate=0.055:fillcolor=black",
-                "boxblur=lr=6:lp=1:cr=3:cp=1",
+                "boxblur=lr=3:lp=1:cr=2:cp=1",
+                "format=rgb24",
+                (
+                    "geq="
+                    f"r='if(between(X-Y+(W+H)*T/{travel:.6f},H*0.18,H*0.34),255,"
+                    f"if(between(X-Y+(W+H)*T/{travel:.6f},H*0.34,H*0.43),35,r(X,Y)))':"
+                    f"g='if(between(X-Y+(W+H)*T/{travel:.6f},H*0.18,H*0.34),255,"
+                    f"if(between(X-Y+(W+H)*T/{travel:.6f},H*0.34,H*0.43),35,g(X,Y)))':"
+                    f"b='if(between(X-Y+(W+H)*T/{travel:.6f},H*0.18,H*0.34),255,"
+                    f"if(between(X-Y+(W+H)*T/{travel:.6f},H*0.34,H*0.43),35,b(X,Y)))'"
+                ),
             ]
         )
     elif beat["style"] == "final":

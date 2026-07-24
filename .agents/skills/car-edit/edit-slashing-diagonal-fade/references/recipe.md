@@ -23,8 +23,17 @@ Create overlapping sections:
 
 Use `diagbr`, `diagbl`, `wipetl`, or `wipetr` depending on source movement direction.
 
+For FFmpeg-only renders where the source angles are too similar for `xfade` to read, add a generated diagonal slash band:
+
+```text
+format=rgb24,geq=r='if(between(X-Y+(W+H)*T/d,H*0.18,H*0.34),255,r(X,Y))':g='...':b='...'
+```
+
+Use a bright leading band and a darker trailing band so the slash is visible even on static footage.
+
 ## QA
 
 - The slash should look intentional in one or two beats.
+- A still frame at the slash midpoint should show a diagonal shape, not just blur.
 - Avoid repeating too much of the same source moment.
 - Avoid using a slash when the source is already a fast pan unless it improves readability.
