@@ -1,4 +1,0 @@
-interface:
-  display_name: "Foreground Mask Reveal"
-  short_description: "Text and graphics behind subjects"
-  default_prompt: "Use $edit-foreground-mask-reveal to place titles or graphics behind the moving subject."

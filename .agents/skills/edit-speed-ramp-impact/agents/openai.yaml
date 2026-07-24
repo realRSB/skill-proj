@@ -1,4 +1,0 @@
-interface:
-  display_name: "Speed Ramp Impact"
-  short_description: "Punchy speed-ramped promo edits"
-  default_prompt: "Use $edit-speed-ramp-impact to cut this footage into a punchy speed-ramped promo."

@@ -1,4 +1,0 @@
-interface:
-  display_name: "Car Template Sequence"
-  short_description: "Apply the car-edit five-effect template"
-  default_prompt: "Use $edit-car-template-sequence to apply the car-edit.mp4 template to my raw car clip."
