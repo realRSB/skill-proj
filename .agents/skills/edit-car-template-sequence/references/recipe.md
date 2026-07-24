@@ -32,12 +32,14 @@ The script:
 
 - probes the input duration and dimensions;
 - creates a vertical crop, including horizontal-to-vertical reframing;
-- applies the flicker near 23%;
-- applies a blurred visual whoosh near 38%;
-- applies a diagonal `xfade` slash around 54%;
-- applies a hard flash cut around 77%;
-- fades out at the end;
+- applies `$edit-flicker-stutter` near 23%;
+- applies `$edit-whoosh-motion-blur` near 38%;
+- applies `$edit-slashing-diagonal-fade` around 54%;
+- applies `$edit-hard-flash-cut` around 77%;
+- applies `$edit-final-fade-out` at the end;
 - drops all audio with `-an`.
+
+When a component needs improvement, update the matching component skill and the renderer implementation together. Keep this template skill as the sequence/router.
 
 ## QA
 

@@ -7,6 +7,16 @@ description: "Apply the exact five-effect order and pacing from the local templa
 
 Use this skill when the user wants the reusable template derived from `car-edit.mp4`, not a generic car promo.
 
+## Components
+
+This skill composes five effect skills in order:
+
+- `$edit-flicker-stutter` at about `23%`
+- `$edit-whoosh-motion-blur` at about `38%`
+- `$edit-slashing-diagonal-fade` at about `54%`
+- `$edit-hard-flash-cut` at about `77%`
+- `$edit-final-fade-out` at the end
+
 ## Process
 
 1. Accept exactly one raw source clip and one output path.
@@ -19,7 +29,7 @@ Use this skill when the user wants the reusable template derived from `car-edit.
    scripts/render-car-template-sequence.py input.mp4 output.mp4 --print-plan
    ```
 
-   The script uses the full source clip from beginning to end, outputs vertical 720x1280, removes audio, and applies the five effects in order.
+   The script uses the full source clip from beginning to end, outputs vertical 720x1280, removes audio, and applies the five component effects in order.
 
 3. Verify the output.
    Run `ffprobe` and confirm: one video stream, no audio streams, 720x1280, 30fps, and a duration close to the source duration. Sample frames near the scaled effect positions.
