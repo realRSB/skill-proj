@@ -5,7 +5,7 @@ description: "Apply the reusable car-edit.mp4 template to one raw car clip using
 
 # Car Edit
 
-Use this top-level skill as the entrypoint for the reusable car edit template. The five component skills live inside this folder.
+Use this top-level skill as the entrypoint for the reusable car edit template. The five component skills live inside this folder and must be loaded before rendering.
 
 ## Component Order
 
@@ -18,8 +18,9 @@ Use this top-level skill as the entrypoint for the reusable car edit template. T
 ## Process
 
 1. Accept one raw car clip and one output path.
-2. Apply the five components in the order above.
-3. Use `scripts/render-car-template-sequence.py input.mp4 output.mp4 --print-plan` for the current deterministic FFmpeg implementation.
-4. Verify one video stream, no audio streams, 720x1280, 30fps, and sampled frames at the scaled effect times.
+2. Read each nested component skill's `SKILL.md` and `references/recipe.md` in the order above.
+3. Apply exactly those five components: no extra promo bars, text overlays, logos, UI graphics, or unrelated effects unless the user explicitly asks.
+4. Use `scripts/render-car-template-sequence.py input.mp4 output.mp4 --print-plan` for the deterministic FFmpeg implementation of the five skills.
+5. Verify one video stream, no audio streams, 720x1280, 30fps, and sampled frames at the scaled effect times.
 
 Read `references/recipe.md` for the timing map and nested component paths.

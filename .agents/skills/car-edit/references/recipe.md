@@ -24,4 +24,12 @@ Scale these from the template duration:
 scripts/render-car-template-sequence.py raw-car.mp4 edited-car.mp4 --print-plan
 ```
 
-The renderer is the current executable implementation of this skill. Improve the relevant nested component skill and renderer together when tuning an effect.
+The renderer is the current executable implementation of the five nested skills. It should only render:
+
+1. flicker stutter
+2. whoosh motion blur
+3. slashing diagonal fade
+4. hard flash cut
+5. final fade out
+
+Improve the relevant nested component skill and renderer together when tuning an effect. Do not add unrelated graphic overlays or extra promo effects to the template renderer.

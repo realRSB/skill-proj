@@ -140,6 +140,7 @@ def build_filter(info):
                 f"{pre_scale},fps=30,settb=AVTB,setsar=1[post]"
             ),
             (
+                # edit-slashing-diagonal-fade
                 f"[pre][post]xfade=transition=diagbr:duration={slash_d:.3f}:"
                 f"offset={slash_start:.3f}[slashed]"
             ),
@@ -148,15 +149,14 @@ def build_filter(info):
                 "eq=contrast=1.18:brightness=-0.030:saturation=1.14:gamma=0.98,"
                 "curves=preset=medium_contrast,unsharp=5:5:0.48:3:3:0.18,"
                 "vignette=PI/5,"
+                # edit-whoosh-motion-blur
                 f"boxblur=lr=8:lp=1:cr=4:cp=1:enable='{e['whoosh']}',"
+                # edit-flicker-stutter
                 f"drawbox=x=0:y=0:w=iw:h=ih:color=white@0.40:t=fill:enable='{e['flicker_white']}',"
                 f"drawbox=x=0:y=0:w=iw:h=ih:color=black@0.40:t=fill:enable='{e['flicker_black']}',"
+                # edit-hard-flash-cut
                 f"drawbox=x=0:y=0:w=iw:h=ih:color=white@0.34:t=fill:enable='{e['cut']}',"
-                f"drawbox=x=42:y=104:w=188:h=3:color=0xFFE166@0.90:t=fill:enable='lt(t,{w['flicker']:.3f})',"
-                f"drawbox=x=42:y=118:w=108:h=3:color=white@0.68:t=fill:enable='lt(t,{w['flicker']:.3f})',"
-                f"drawbox=x=42:y=h-132:w=258:h=4:color=0xE51B23@0.95:t=fill:enable='between(t,{w['whoosh']:.3f},{w['cut']:.3f})',"
-                f"drawbox=x=(w-220)/2:y=h-102:w=220:h=5:color=white@0.86:t=fill:enable='gte(t,{w['cut']:.3f})',"
-                f"drawbox=x=(w-120)/2:y=h-84:w=120:h=3:color=0xFFE166@0.92:t=fill:enable='gte(t,{w['cut']:.3f})',"
+                # edit-final-fade-out
                 f"fade=t=out:st={w['fade_start']:.3f}:d={w['fade_d']:.3f},"
                 "format=yuv420p[finalv]"
             ),
