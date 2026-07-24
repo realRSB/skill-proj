@@ -1,0 +1,4 @@
+interface:
+  display_name: "Car Edit"
+  short_description: "Reusable five-effect car edit template"
+  default_prompt: "Use $car-edit to apply the car-edit template sequence to my raw car clip."

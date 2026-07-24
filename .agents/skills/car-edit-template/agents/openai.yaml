@@ -1,4 +1,0 @@
-interface:
-  display_name: "Car Edit Template"
-  short_description: "Router for the five car edit effects"
-  default_prompt: "Use $car-edit-template to apply the car-edit effect sequence to my raw car clip."

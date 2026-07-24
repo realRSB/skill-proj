@@ -1,4 +1,4 @@
-# Car Edit Template Router
+# Car Edit Router
 
 ## Component Skill Paths
 
@@ -24,4 +24,4 @@ Scale these from the template duration:
 scripts/render-car-template-sequence.py raw-car.mp4 edited-car.mp4 --print-plan
 ```
 
-The renderer is the current executable implementation of this router. Improve the relevant nested component skill and renderer together when tuning an effect.
+The renderer is the current executable implementation of this skill. Improve the relevant nested component skill and renderer together when tuning an effect.
