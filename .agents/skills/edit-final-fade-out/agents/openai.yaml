@@ -1,0 +1,4 @@
+interface:
+  display_name: "Final Fade Out"
+  short_description: "Template ending fade to black"
+  default_prompt: "Use $edit-final-fade-out to add the car-template ending fade out to this edit."
