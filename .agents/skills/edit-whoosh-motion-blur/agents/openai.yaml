@@ -1,0 +1,4 @@
+interface:
+  display_name: "Whoosh Motion Blur"
+  short_description: "Template whoosh blur transition"
+  default_prompt: "Use $edit-whoosh-motion-blur to add the car-template whoosh to this edit."
