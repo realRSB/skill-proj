@@ -1,0 +1,4 @@
+interface:
+  display_name: "Hard Flash Cut"
+  short_description: "Template hard flash cut transition"
+  default_prompt: "Use $edit-hard-flash-cut to add the car-template hard cut to this edit."
