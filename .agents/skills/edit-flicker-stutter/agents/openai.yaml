@@ -1,0 +1,4 @@
+interface:
+  display_name: "Flicker Stutter"
+  short_description: "Template flicker/stutter hit"
+  default_prompt: "Use $edit-flicker-stutter to add the car-template flicker hit to this edit."
