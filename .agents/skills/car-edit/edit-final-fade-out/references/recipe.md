@@ -17,10 +17,10 @@
 fade=t=out:st=fade_start:d=fade_duration
 ```
 
-For silent template output, use `-an`.
+For car-edit template output, fade `assets/trap-beat.mp3` with the final video fade and trim it to the render duration.
 
 ## QA
 
 - Confirm the video has a clean ending.
-- Confirm no audio stream exists for no-audio template renders.
+- Confirm one audio stream exists with the bundled trap beat.
 - Confirm the fade does not start before the final visual beat.

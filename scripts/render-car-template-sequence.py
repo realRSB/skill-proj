@@ -6,6 +6,7 @@ import subprocess
 from pathlib import Path
 
 
+DEFAULT_MUSIC_PATH = Path(__file__).resolve().parent.parent / ".agents" / "skills" / "car-edit" / "assets" / "trap-beat.mp3"
 TEMPLATE_DURATION = 18.1
 EFFECTS = {
     "flicker": 2.35 / TEMPLATE_DURATION,
@@ -188,19 +189,33 @@ def build_filter(info):
         start = end
     concat_inputs = "".join(f"[v{index}]" for index in range(len(BEATS)))
     parts.append(f"{concat_inputs}concat=n={len(BEATS)}:v=1:a=0,format=yuv420p[finalv]")
+    audio_fade = clamp(duration * 0.095, 0.70, 1.30)
+    parts.append(
+        "[1:a]"
+        f"atrim=start=0:end={duration:.3f},"
+        "asetpts=PTS-STARTPTS,"
+        "afade=t=in:st=0:d=0.05,"
+        f"afade=t=out:st={max(0, duration - audio_fade):.3f}:d={audio_fade:.3f},"
+        "loudnorm=I=-16:TP=-1.5:LRA=11,"
+        "aresample=48000[finala]"
+    )
     return ";".join(parts)
 
 
 def main():
-    parser = argparse.ArgumentParser(description="Apply the car-edit.mp4 five-effect template to one raw clip.")
+    parser = argparse.ArgumentParser(description="Apply the car-edit five-effect template to one raw clip.")
     parser.add_argument("input", help="Raw source video")
     parser.add_argument("output", help="Rendered MP4 output")
+    parser.add_argument("--music", default=str(DEFAULT_MUSIC_PATH), help="Background beat to loop/trim to the output length")
     parser.add_argument("--print-plan", action="store_true", help="Print scaled effect timings")
     args = parser.parse_args()
 
     input_path = Path(args.input).expanduser()
     output_path = Path(args.output).expanduser()
+    music_path = Path(args.music).expanduser()
     output_path.parent.mkdir(parents=True, exist_ok=True)
+    if not music_path.exists():
+        raise SystemExit(f"Music file does not exist: {music_path}")
 
     info = probe(input_path)
     if info["duration"] < 4:
@@ -208,6 +223,7 @@ def main():
 
     plan = {
         "input": str(input_path),
+        "music": str(music_path),
         **info,
         **timeline_windows(info["duration"]),
         "beats": [
@@ -228,11 +244,16 @@ def main():
         "-y",
         "-i",
         str(input_path),
+        "-stream_loop",
+        "-1",
+        "-i",
+        str(music_path),
         "-filter_complex",
         build_filter(info),
         "-map",
         "[finalv]",
-        "-an",
+        "-map",
+        "[finala]",
         "-r",
         "30",
         "-fps_mode",
@@ -243,6 +264,10 @@ def main():
         "medium",
         "-crf",
         "18",
+        "-c:a",
+        "aac",
+        "-b:a",
+        "160k",
         "-movflags",
         "+faststart",
         str(output_path),

@@ -40,6 +40,8 @@ The template is an edited sequence, not a continuous source clip with effects on
 scripts/render-car-template-sequence.py raw-car.mp4 edited-car.mp4 --print-plan
 ```
 
+By default the renderer adds `assets/trap-beat.mp3` as background music. Loop or trim the beat to the final video duration, fade it out with the ending, and encode AAC audio in the MP4 output.
+
 The renderer is the current executable implementation of the five nested skills. It should only render:
 
 1. flicker stutter
