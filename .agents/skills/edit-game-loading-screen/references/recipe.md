@@ -29,11 +29,14 @@ Use these visual parts after the drop:
 - dark cinematic grade
 - subtle vignette
 - `ORACLE OF THE GOLDEN SAIL` title/menu overlay based on `assets/loading-menu-reference.png`
+- reference-style gold serif typography placed in the upper-left safe area
+- transparent overlay treatment: text, ornament, selector, and a soft edge darkening only
+- no boxed HUD panel, heavy black slab, neon sci-fi UI, or generic loading bar
 - Continue, New Game, Settings, Exit menu options
 - animated selector/highlight that visits each menu option in order
 - brief click/flash accents as the selection changes
 
-Keep overlay text inside safe margins. It should feel like a cinematic game main menu, not a generic HUD.
+Keep overlay text inside safe margins. It should feel like the uploaded cinematic game main menu reference, not a generic HUD.
 
 ## QA
 

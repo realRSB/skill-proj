@@ -17,6 +17,7 @@ Use this skill to turn a raw clip or portrait image into a vertical game-loading
 6. At the drop, switch to cinematic slow motion with:
    - darker grade and sharpening
    - the bundled fantasy game-menu overlay inspired by `assets/loading-menu-reference.png`
+   - gold serif menu text composited directly over footage, with soft shadow/vignette instead of an opaque HUD panel
    - the title/menu aesthetic from the uploaded loading-screen reference
    - an animated selector that moves through Continue, New Game, Settings, and Exit
    - click/flash accents as the selector changes
