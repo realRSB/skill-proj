@@ -14,6 +14,7 @@ Source trend: Instagram Reel `DYQ2TyWAy22`, described in the research notes as a
 
 - Use the uploaded menu reference as the taste target: gold serif title, centered `OF THE` line treatment, ornate divider, italic tagline, and small circular logo in the upper-right.
 - Keep the overlay transparent over footage with soft edge darkening, grain, glow, and vignette.
+- Keep the header compact and biased to the upper-left so the subject remains readable.
 - Avoid heavy opaque panels, generic sci-fi HUDs, neon loading bars, or static title-card behavior.
 - The selector should visit menu options in order and feel like it is clicking through a real game menu.
 
