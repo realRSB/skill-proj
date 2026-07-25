@@ -78,10 +78,9 @@ def base_filters(info, zoom, image_input=False):
 
 def loading_grade():
     return [
-        "eq=contrast=1.23:brightness=-0.055:saturation=1.18:gamma=0.94",
+        "eq=contrast=1.18:brightness=-0.02:saturation=1.14:gamma=0.96",
         "curves=preset=medium_contrast",
         "unsharp=5:5:0.45:3:3:0.16",
-        "vignette=PI/4",
     ]
 
 

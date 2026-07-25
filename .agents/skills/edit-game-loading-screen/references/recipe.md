@@ -26,10 +26,10 @@ Use the bundled `assets/intro-caption-720x1280.png`, based on `assets/intro-capt
 
 Use these visual parts after the drop:
 
-- dark cinematic grade
-- subtle vignette
+- cinematic grade that keeps the subject readable
+- very light edge darkening only; do not bury the subject in dark borders
 - `ORACLE OF THE GOLDEN SAIL` title/menu overlay based on `assets/loading-menu-reference.png`
-- reference-style gold serif typography placed in the upper-left safe area
+- compact reference-style gold serif typography placed in the upper-left safe area
 - stacked header matching the reference structure: large `ORACLE`, smaller centered `OF THE` between rules, large `GOLDEN SAIL`, ornate divider, italic tagline
 - small circular compass/logo mark in the upper-right safe area
 - transparent overlay treatment: text, ornament, selector, and a soft edge darkening only
@@ -38,7 +38,7 @@ Use these visual parts after the drop:
 - animated selector/highlight that visits each menu option in order
 - brief click/flash accents as the selection changes
 
-Keep overlay text inside safe margins. It should feel like the uploaded cinematic game main menu reference, not a generic HUD.
+Keep overlay text inside safe margins while preserving subject readability. It should feel like the uploaded cinematic game main menu reference, not a generic HUD.
 
 ## QA
 
