@@ -1,0 +1,4 @@
+interface:
+  display_name: "Game Loading Screen Edit"
+  short_description: "Turn a clip into a video game loading screen trend"
+  default_prompt: "Use $edit-game-loading-screen to turn my clip into a video game loading screen edit."
