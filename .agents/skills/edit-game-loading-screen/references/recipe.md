@@ -30,6 +30,8 @@ Use these visual parts after the drop:
 - subtle vignette
 - `ORACLE OF THE GOLDEN SAIL` title/menu overlay based on `assets/loading-menu-reference.png`
 - reference-style gold serif typography placed in the upper-left safe area
+- stacked header matching the reference structure: large `ORACLE`, smaller centered `OF THE` between rules, large `GOLDEN SAIL`, ornate divider, italic tagline
+- small circular compass/logo mark in the upper-right safe area
 - transparent overlay treatment: text, ornament, selector, and a soft edge darkening only
 - no boxed HUD panel, heavy black slab, neon sci-fi UI, or generic loading bar
 - Continue, New Game, Settings, Exit menu options
